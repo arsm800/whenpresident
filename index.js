@@ -111,6 +111,7 @@ app.get("/login/twitter/callback", function(req, res){
   });
 });
 
+
 app.get("/apitest/:username", function(req, res){
   request.get({
     url:    "https://api.twitter.com/1.1/statuses/user_timeline.json",
@@ -123,6 +124,10 @@ app.get("/apitest/:username", function(req, res){
   }, function(e, response){
     res.json(response.body);
   });
+
+app.get("/logout", function(req, res){
+  req.session.destroy();
+  res.redirect("/");
 });
 
 app.get("/candidates", function(req, res){
